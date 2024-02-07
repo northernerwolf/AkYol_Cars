@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tmcars_clone/presentation/pages/adds/adds.dart';
+import 'package:tmcars_clone/presentation/pages/cars/cars.dart';
+import 'package:tmcars_clone/presentation/pages/house/house.dart';
 import 'package:tmcars_clone/presentation/pages/initial/initial.dart';
+import 'package:tmcars_clone/presentation/pages/lost_found/lost_found.dart';
+import 'package:tmcars_clone/presentation/pages/parts/parst.dart';
 import 'package:tmcars_clone/presentation/widgets/drawer_header.dart';
 
 class DrawerApp extends StatelessWidget {
@@ -10,6 +15,7 @@ class DrawerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.white,
       width: MediaQuery.of(context).size.width - 100,
       child: SingleChildScrollView(
           // ignore: avoid_unnecessary_containers
@@ -22,26 +28,54 @@ class DrawerApp extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Initial()));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => const Initial()),
+                      (route) => false);
                 },
                 child: menuItem('Baş sahypa', Icons.abc, false, '123', 18)),
             InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const CarsScreen()),
+                      (route) => false);
+                },
                 child: menuItem('Awtoulaglar', Icons.abc, false, '3', 16)),
             InkWell(
                 onTap: () {
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => const Arzanladyshlar()));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const PartsScreen()),
+                      (route) => false);
                 },
                 child: menuItem('Awtoşaýlar', Icons.abc, false, '23', 17)),
             InkWell(
                 onTap: () {
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => const GallaryScreen()));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const Lostfoundscreen()),
+                      (route) => false);
                 },
                 child: menuItem(
-                    'Beýleki bildirişler', Icons.abc, false, '1238', 17)),
+                    'Ýitrilen we tapylan', Icons.abc, false, '1238', 17)),
+
+            InkWell(
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const HouseScreen()),
+                      (route) => false);
+                },
+                child: menuItem('Emläk', Icons.abc, false, '123', 18)),
+
+            InkWell(
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const AddsScreen()),
+                      (route) => false);
+                },
+                child: menuItem('Bildirş goşmak', Icons.abc, false, '123', 18)),
             const SizedBox(
               height: 20,
             ),
@@ -67,46 +101,46 @@ class DrawerApp extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height / 6.5,
             ),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Material(
-                  color: Colors.transparent,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15),
-                    child: Row(children: [
-                      Icon(
-                        Icons.logout,
-                        size: 20,
-                        color: Colors.red,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Ulgamdan çykmak',
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontFamily: 'Roboto',
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ]),
-                  ),
-                ),
-                // const Padding(
-                //   padding: EdgeInsets.only(left: 25, top: 30),
-                //   child: Text(
-                //     '2024',
-                //     style: TextStyle(
-                //         color: Color.fromARGB(255, 131, 130, 130),
-                //         fontFamily: 'Roboto',
-                //         fontSize: 12,
-                //         fontWeight: FontWeight.bold),
-                //   ),
-                // ),
-              ],
-            )
+            // const Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     Material(
+            //       color: Colors.transparent,
+            //       child: Padding(
+            //         padding: EdgeInsets.only(left: 15, right: 15),
+            //         child: Row(children: [
+            //           Icon(
+            //             Icons.logout,
+            //             size: 20,
+            //             color: Colors.red,
+            //           ),
+            //           SizedBox(
+            //             width: 15,
+            //           ),
+            //           Text(
+            //             'Ulgamdan çykmak',
+            //             style: TextStyle(
+            //                 color: Colors.red,
+            //                 fontFamily: 'Roboto',
+            //                 fontSize: 14,
+            //                 fontWeight: FontWeight.normal),
+            //           ),
+            //         ]),
+            //       ),
+            //     ),
+            //     // const Padding(
+            //     //   padding: EdgeInsets.only(left: 25, top: 30),
+            //     //   child: Text(
+            //     //     '2024',
+            //     //     style: TextStyle(
+            //     //         color: Color.fromARGB(255, 131, 130, 130),
+            //     //         fontFamily: 'Roboto',
+            //     //         fontSize: 12,
+            //     //         fontWeight: FontWeight.bold),
+            //     //   ),
+            //     // ),
+            //   ],
+            // )
           ],
         ),
       )),
@@ -168,19 +202,19 @@ class DrawerApp extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              color: Colors.blue,
+              color: Color.fromARGB(255, 59, 109, 147),
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 10, right: 10, bottom: 7, top: 7),
+                padding:
+                    const EdgeInsets.only(left: 6, right: 6, bottom: 3, top: 3),
                 child: Text(
                   count,
                   style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
                       fontFamily: "Roboto",
-                      fontSize: 13),
+                      fontSize: 14),
                 ),
               ),
             ),
