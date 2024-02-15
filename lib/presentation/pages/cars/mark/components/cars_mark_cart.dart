@@ -19,6 +19,7 @@ class CarsModelCart extends StatelessWidget {
           SizedBox(
               width: 45,
               height: 45,
+              // ignore: unnecessary_null_comparison
               child: image == null
                   ? CachedNetworkImage(imageUrl: image)
                   : Icon(Icons.no_photography)),

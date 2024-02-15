@@ -19,3 +19,12 @@ class CarsCatigorysRepository {
     return response;
   }
 }
+
+class CarsCatigorysByIdRepository {
+  final MyApiDataSource apiDataSource = MyApiDataSource();
+
+  Future<Response?> carsCatigorysByIdRepository(String id) async {
+    final response = await apiDataSource.getCatigorysById(id);
+    return response;
+  }
+}

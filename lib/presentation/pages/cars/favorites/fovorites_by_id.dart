@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tmcars_clone/data/providers/get_allcars_provider.dart';
-import 'package:tmcars_clone/presentation/pages/cars/all/components/all_cars_item.dart';
+import 'package:tmcars_clone/data/providers/cars_data_provider.dart';
 import 'package:tmcars_clone/presentation/pages/cars/favorites/components/cars_list_cart.dart';
+import 'package:tmcars_clone/utils/design/app_colors.dart';
 
-class AllCars extends StatefulWidget {
-  const AllCars({super.key});
+class FavoritesById extends StatefulWidget {
+  String id;
+  String title;
+  FavoritesById({required this.id, required this.title, super.key});
 
   @override
-  State<AllCars> createState() => _AllCarsState();
+  State<FavoritesById> createState() => _FavoritesByIdState();
 }
 
-class _AllCarsState extends State<AllCars> {
+class _FavoritesByIdState extends State<FavoritesById> {
   @override
   void initState() {
     fetchData();
@@ -20,14 +22,27 @@ class _AllCarsState extends State<AllCars> {
   }
 
   fetchData() async {
-    await Provider.of<AllCarsProvider>(context, listen: false)
-        .getAllCarsProvider();
+    await Provider.of<CarsCatigorysByIdProvider>(context, listen: false)
+        .getCarsCatigorysByIdProvider(widget.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Consumer<AllCarsProvider>(builder: (_, models, __) {
+      appBar: AppBar(
+        backgroundColor: AppColors.primary,
+        iconTheme: const IconThemeData(size: 30, color: Colors.white),
+        title: Text(
+          widget.title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.normal,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      body: SafeArea(
+          child: Consumer<CarsCatigorysByIdProvider>(builder: (_, models, __) {
         return ListView.builder(
             itemCount: models.models.length,
             shrinkWrap: true,
@@ -38,11 +53,10 @@ class _AllCarsState extends State<AllCars> {
                   // highlightColor: AppColors.cartColor,
                   borderRadius: BorderRadius.circular(10),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => AllCarsById(
-                              id: models.models[index].id.toString(),
-                              title: models.models[index].model.name,
-                            )));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => FavoritesById(
+                    //           id: models.models[index].id.toString(),
+                    //         )));
                   },
                   child: CarsListCart(
                     location: models.models[index].location.name,

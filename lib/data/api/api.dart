@@ -119,4 +119,67 @@ class MyApiDataSource {
       return e.response;
     }
   }
+
+  Future<Response?> getCatigorysById(String id) async {
+    // final headers = {
+    //   'Authorization': '$token',
+    // };
+    try {
+      final response = await dio.get(
+        '${Constants.baseUrl}car/category/$id',
+        // data: jsonEncode({
+        //   "token": token,
+        // }),
+        // options: Options(headers: {
+        //   'headers': headers,
+        // }),
+      );
+      return response;
+    } on DioError catch (e) {
+      if (e.response != null) {}
+      return e.response;
+    }
+  }
+
+  Future<Response?> getCarsAll() async {
+    // final headers = {
+    //   'Authorization': '$token',
+    // };
+    try {
+      final response = await dio.get(
+        '${Constants.baseUrl}car',
+        // data: jsonEncode({
+        //   "token": token,
+        // }),
+        // options: Options(headers: {
+        //   'headers': headers,
+        // }),
+      );
+      return response;
+    } on DioError catch (e) {
+      if (e.response != null) {}
+      return e.response;
+    }
+  }
+
+  Future<Response?> getCarAllById(String id) async {
+    // final headers = {
+    //   'Authorization': '$token',
+    // };
+    try {
+      final response = await dio.get(
+        '${Constants.baseUrl}car/$id',
+        // data: jsonEncode({
+        //   "token": token,
+        // }),
+        // options: Options(headers: {
+        //   'headers': headers,
+        // }),
+      );
+      return response;
+    } on DioError catch (e) {
+      if (e.response != null) {}
+      return e.response;
+    }
+  }
 }

@@ -4,9 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:tmcars_clone/applications/settings_singleton.dart';
 import 'package:tmcars_clone/core/lanuage_delagate.dart';
+import 'package:tmcars_clone/data/providers/all_carbyid_provider.dart';
 import 'package:tmcars_clone/data/providers/cars_catigorys_provider.dart';
+import 'package:tmcars_clone/data/providers/cars_data_provider.dart';
 import 'package:tmcars_clone/data/providers/cars_moders_provider.dart';
 import 'package:tmcars_clone/data/providers/getUser_provider.dart';
+import 'package:tmcars_clone/data/providers/get_allcars_provider.dart';
 import 'package:tmcars_clone/data/providers/login_provider.dart';
 import 'package:tmcars_clone/data/providers/register_provider.dart';
 import 'package:tmcars_clone/presentation/pages/initial/initial.dart';
@@ -42,6 +45,15 @@ void main() async {
         ),
         ChangeNotifierProvider<CarsCatigorysProvider>(
           create: (_) => CarsCatigorysProvider(),
+        ),
+        ChangeNotifierProvider<CarsCatigorysByIdProvider>(
+          create: (_) => CarsCatigorysByIdProvider(),
+        ),
+        ChangeNotifierProvider<AllCarsProvider>(
+          create: (_) => AllCarsProvider(),
+        ),
+        ChangeNotifierProvider<AllCarsByIdProvider>(
+          create: (_) => AllCarsByIdProvider(),
         ),
       ], child: const MyApp())));
 }

@@ -10,13 +10,13 @@ class CarDataModel {
   });
 
   factory CarDataModel.fromJson(Map<String, dynamic> json) {
-    List<dynamic> jsonDataList = json['data'];
+    List<dynamic> jsonDataList = json['data'] ?? [];
     List<CarItemModel> carItems =
         jsonDataList.map((item) => CarItemModel.fromJson(item)).toList();
 
     return CarDataModel(
-      pages: json['pages'],
-      page: json['page'],
+      pages: json['pages'] ?? 0,
+      page: json['page'] ?? 0,
       data: carItems,
     );
   }
@@ -58,7 +58,7 @@ class CarItemModel {
       model: CarModel.fromJson(json['model']),
       mark: CarMark.fromJson(json['mark']),
       location: CarLocation.fromJson(json['location']),
-      image: List<String>.from(json['image']),
+      image: List<String>.from(json['image'] ?? ''),
     );
   }
 }

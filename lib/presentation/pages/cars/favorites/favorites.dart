@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tmcars_clone/data/providers/cars_catigorys_provider.dart';
+import 'package:tmcars_clone/presentation/pages/cars/favorites/fovorites_by_id.dart';
 import 'package:tmcars_clone/presentation/pages/initial/components/cart_main_network.dart';
 
 class FavoritesCars extends StatefulWidget {
@@ -37,11 +38,14 @@ class _FavoritesCarsState extends State<FavoritesCars> {
               // highlightColor: AppColors.cartColor,
               borderRadius: BorderRadius.circular(10),
               onTap: () {
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) => const MusicPlayer()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FavoritesById(
+                          id: models.models[index].id.toString(),
+                          title: models.models[index].name,
+                        )));
               },
               child: MainCartNetwork(
-                images: '',
+                images: models.models[index].image,
                 title: models.models[index].name,
               ),
             );
